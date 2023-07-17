@@ -17,7 +17,10 @@ const (
 	ActionQuery Action = "query" // query action
 )
 
-const urlWithPlaceholder = "https://%s.wikipedia.org/w/api.php"
+const (
+	urlWithPlaceholder = "https://%s.wikipedia.org/w/api.php"
+	defaultLimit       = 10
+)
 
 // Client is a client for the Wikipedia API requests.
 // Wikipedia API main page: https://www.mediawiki.org/wiki/API:Main_page
@@ -82,12 +85,11 @@ type apiResult struct {
 }
 
 func (c *Client) do(ctx context.Context, v any) (*apiResult, error) {
-	req, err := http.NewRequest(http.MethodGet, c.url, nil)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, c.url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("go-wikipedia: failed to create http request: %w", err)
 	}
 
-	req.WithContext(ctx)
 	req.Header.Set("User-Agent", c.o.userAgent)
 
 	q, err := query.Values(newInnerQuery(v))

@@ -13,7 +13,7 @@ type SearchOptions struct {
 }
 
 func defaultSearchOptions() *SearchOptions {
-	return &SearchOptions{Limit: 10}
+	return &SearchOptions{Limit: defaultLimit}
 }
 
 type searchRequest struct {

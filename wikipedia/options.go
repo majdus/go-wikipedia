@@ -32,7 +32,8 @@ func (fo functionalOption) apply(o *options) {
 }
 
 // WithLanguage sets the language code of the API being requested.
-// It sets url domain prefix to one of the two letter prefixes found on the [All wikipedias ordered by number of articles](http://meta.wikimedia.org/wiki/List_of_Wikipedias).
+// It sets url domain prefix to one of the two letter prefixes found on the
+// [All wikipedias ordered by number of articles](http://meta.wikimedia.org/wiki/List_of_Wikipedias).
 // For example, `en` for English (https://en.wikipedia.org), `zh` for Chinese (https://zh.wikipedia.org).
 func WithLanguage(language string) Option {
 	return newFunctionalOption(func(o *options) { o.language = language })

@@ -14,6 +14,15 @@ import (
 func TestClient_Search(t *testing.T) {
 	ts := testhelper.NewTestHTTPServer()
 	ts.RegisterHandler("/w/api.php", func(w http.ResponseWriter, r *http.Request) {
+		if err := r.ParseForm(); err != nil {
+			panic(err)
+		}
+
+		if !checkQuery(r.Form, "format", "json") {
+			http.Error(w, "format must be json", http.StatusBadRequest)
+			return
+		}
+
 		fmt.Fprint(w, `
 {
     "warnings": {

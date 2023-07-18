@@ -23,6 +23,7 @@ type searchRequest struct {
 	SrLimit  int    `url:"srlimit"`
 	Limit    int    `url:"limit"`
 	SrSearch string `url:"srsearch"`
+	Format   string `url:"format"`
 }
 
 // Search searches the Wikipedia for the given query.
@@ -46,6 +47,7 @@ func (c *Client) Search(
 		SrLimit:  o.Limit,
 		Limit:    o.Limit,
 		SrSearch: query,
+		Format:   "json",
 	}
 	resp, err := c.do(ctx, req)
 	if err != nil {

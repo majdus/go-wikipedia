@@ -18,7 +18,7 @@ const (
 )
 
 const (
-	urlWithPlaceholder = "https://%s.wikipedia.org/w/api.php"
+	urlWithPlaceholder = "http://%s.wikipedia.org/w/api.php"
 	defaultLimit       = 10
 )
 
@@ -63,8 +63,17 @@ type requestError struct {
 	Info string `json:"info"`
 }
 
+type warnings struct {
+	Main map[string]any `json:"main"`
+}
+
+type searchInfo struct {
+	TotalHits int `json:"totalhits"`
+}
+
 type responseQuery struct {
-	Search []*searchResponse `json:"search"`
+	Search     []*searchResponse `json:"search"`
+	SearchInfo searchInfo        `json:"searchinfo"`
 }
 
 type searchResponse struct {
@@ -77,11 +86,17 @@ type searchResponse struct {
 	Timestamp string `json:"timestamp"`
 }
 
+type responseContinue struct {
+	Sroffset int    `json:"sroffset"`
+	Continue string `json:"continue"`
+}
+
 type apiResult struct {
-	Error    requestError   `json:"error"`
-	Query    responseQuery  `json:"query"`
-	Continue map[string]any `json:"continue"`
-	Parse    map[string]any `json:"parse"`
+	Error         requestError     `json:"error"`
+	Warnings      warnings         `json:"warnings"`
+	BatchComplete string           `json:"batchcomplete"`
+	Continue      responseContinue `json:"continue"`
+	Query         responseQuery    `json:"query"`
 }
 
 func (c *Client) do(ctx context.Context, v any) (*apiResult, error) {

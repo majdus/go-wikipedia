@@ -20,7 +20,7 @@ go get github.com/scottzhlin/go-wikipedia
 Alternatively, you can import the package directly and then run `go mod tidy` to install the dependency:
 
 ```go
-import "github.com/scottzhlin/go-wikipedia"
+import "github.com/scottzhlin/go-wikipedia/wikipedia"
 ```
 
 ## Usage

@@ -8,9 +8,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/samber/lo"
-
 	"github.com/google/go-querystring/query"
+	"github.com/samber/lo"
 )
 
 // Action is the action of the Wikipedia API request.

@@ -7,8 +7,9 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/scottzhlin/go-wikipedia/internal/testhelper"
 	"github.com/stretchr/testify/require"
+
+	"github.com/scottzhlin/go-wikipedia/internal/testhelper"
 )
 
 func checkQuery(u url.Values, k, v string) bool {
@@ -225,7 +226,7 @@ func TestClient_GetPageContent(t *testing.T) {
     "batchcomplete": "",
     "warnings": {
         "extracts": {
-            "*": "HTML may be malformed and/or unbalanced and may omit inline images. Use at your own risk. Known problems are listed at https://www.mediawiki.org/wiki/Special:MyLanguage/Extension:TextExtracts#Caveats."
+            "*": "HTML may be malformed and/or unbalanced and may omit inline images. Use at your own risk. "
         }
     },
     "query": {

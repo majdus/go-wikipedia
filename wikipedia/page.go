@@ -148,7 +148,7 @@ func (c *Client) disambiguate(ctx context.Context, page *innerPage) (*Page, erro
 	}
 
 	doc := soup.HTMLParse(html)
-	d := make([]string, 0, 10)
+	var d []string
 	for _, link := range doc.FindAll("li") {
 		for _, l := range link.FindAll("a") {
 			if ref, ok := l.Attrs()["title"]; ok {

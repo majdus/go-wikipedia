@@ -14,7 +14,7 @@ func defaultSearchOptions() *SearchOptions {
 	return &SearchOptions{Limit: defaultLimit}
 }
 
-type searchRequest struct {
+type SearchRequest struct {
 	Action   Action `url:"action"`
 	List     string `url:"list"`
 	SrProp   string `url:"srprop"`
@@ -39,7 +39,7 @@ func (c *Client) Search(
 		option(o)
 	}
 
-	req := &searchRequest{
+	req := &SearchRequest{
 		Action:   ActionQuery,
 		List:     "search",
 		SrLimit:  o.Limit,

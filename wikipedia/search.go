@@ -7,11 +7,15 @@ import (
 
 // SearchOptions are the options for the Wikipedia search request.
 type SearchOptions struct {
-	Limit int // the max number of results returned, default 10
+	SrLimit int // the max number of results returned, default 10
+	Limit   int // the max number of results returned, default 10
 }
 
 func defaultSearchOptions() *SearchOptions {
-	return &SearchOptions{Limit: defaultLimit}
+	return &SearchOptions{
+		SrLimit: defaultLimit,
+		Limit:   defaultLimit,
+	}
 }
 
 type SearchRequest struct {
@@ -28,22 +32,21 @@ type SearchRequest struct {
 func (c *Client) Search(
 	ctx context.Context,
 	query string,
-	options ...func(searchOptions *SearchOptions),
+	searchOptions *SearchOptions,
 ) ([]*SearchResponse, error) {
 	if len(query) == 0 {
 		return nil, errors.New("go-wikipedia: query is empty")
 	}
 
-	o := defaultSearchOptions()
-	for _, option := range options {
-		option(o)
+	if searchOptions == nil {
+		searchOptions = defaultSearchOptions()
 	}
 
 	req := &SearchRequest{
 		Action:   ActionQuery,
 		List:     "search",
-		SrLimit:  o.Limit,
-		Limit:    o.Limit,
+		SrLimit:  searchOptions.SrLimit,
+		Limit:    searchOptions.Limit,
 		SrSearch: query,
 		Format:   "json",
 	}

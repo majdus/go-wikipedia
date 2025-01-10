@@ -13,7 +13,7 @@ type options struct {
 func defaultOptions() *options {
 	return &options{
 		language:  "en",
-		userAgent: "wikipedia (https://github.com/scottzhlin/go-wikipedia/)",
+		userAgent: "wikipedia (https://github.com/majdus/go-wikipedia/)",
 	}
 }
 

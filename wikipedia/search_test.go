@@ -8,7 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/scottzhlin/go-wikipedia/internal/testhelper"
+	"github.com/majdus/go-wikipedia/internal/testhelper"
 )
 
 func TestClient_Search(t *testing.T) {

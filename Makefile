@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := precommit
 IMPI=impi
-REPO=github.com/scottzhlin/go-wikipedia
+REPO=github.com/majdus/go-wikipedia
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
 

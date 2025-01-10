@@ -33,7 +33,7 @@ func (ts *TestHTTPServer) Start() {
 		log.Printf("received request at path %q\n", r.URL.Path)
 
 		// check auth
-		if r.Header.Get("User-Agent") != "wikipedia (https://github.com/scottzhlin/go-wikipedia/)" {
+		if r.Header.Get("User-Agent") != "wikipedia (https://github.com/majdus/go-wikipedia/)" {
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}

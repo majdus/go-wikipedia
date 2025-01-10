@@ -1,4 +1,4 @@
-module github.com/scottzhlin/go-wikipedia
+module github.com/majdus/go-wikipedia
 
 go 1.18
 

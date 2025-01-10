@@ -98,7 +98,7 @@ type normalize struct {
 }
 
 type responseQuery struct {
-	Search     []*searchResponse    `json:"search"`
+	Search     []*SearchResponse    `json:"search"`
 	SearchInfo searchInfo           `json:"searchinfo"`
 	Pages      map[string]innerPage `json:"pages"`
 	Redirect   []normalize          `json:"redirects"`
@@ -114,7 +114,7 @@ func (rq *responseQuery) oneOfPage() (innerPage, error) {
 	return rq.Pages[pageIDs[0]], nil
 }
 
-type searchResponse struct {
+type SearchResponse struct {
 	Ns        int    `json:"ns"`
 	Title     string `json:"title"`
 	PageID    int    `json:"pageid"`

@@ -29,7 +29,7 @@ func (c *Client) Search(
 	ctx context.Context,
 	query string,
 	options ...func(searchOptions *SearchOptions),
-) ([]*searchResponse, error) {
+) ([]*SearchResponse, error) {
 	if len(query) == 0 {
 		return nil, errors.New("go-wikipedia: query is empty")
 	}

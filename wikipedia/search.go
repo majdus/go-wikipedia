@@ -3,8 +3,6 @@ package wikipedia
 import (
 	"context"
 	"errors"
-
-	"github.com/samber/lo"
 )
 
 // SearchOptions are the options for the Wikipedia search request.
@@ -31,7 +29,7 @@ func (c *Client) Search(
 	ctx context.Context,
 	query string,
 	options ...func(searchOptions *SearchOptions),
-) ([]string, error) {
+) ([]*searchResponse, error) {
 	if len(query) == 0 {
 		return nil, errors.New("go-wikipedia: query is empty")
 	}
@@ -54,5 +52,5 @@ func (c *Client) Search(
 		return nil, err
 	}
 
-	return lo.Map(resp.Query.Search, func(item *searchResponse, _ int) string { return item.Title }), nil
+	return resp.Query.Search, nil
 }
